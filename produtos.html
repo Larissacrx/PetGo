@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetGo - Petshop Completo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .category-btn {
+            @apply px-4 py-2 rounded-full text-gray-700 hover:bg-indigo-100 transition whitespace-nowrap;
+        }
+        .category-btn.active {
+            @apply bg-indigo-600 text-white hover:bg-indigo-700;
+        }
+        
+        [data-category] {
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="bg-white shadow-md py-4 sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-800 hover:text-indigo-600 font-medium">Início</a>
+                    <a href="servicos.html" class="text-gray-800 hover:text-indigo-600 font-medium">Serviços</a>
+                    <a href="produtos.html" class="text-indigo-600 font-medium border-b-2 border-indigo-600">Produtos</a>
+                    <a href="agendamentos.html" class="text-gray-800 hover:text-indigo-600 font-medium">Agendamento</a>
+                    <a href="contato.html" class="text-gray-800 hover:text-indigo-600 font-medium">Contato</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="bg-indigo-600 text-white py-16 text-center">
+        <h1 class="text-4xl font-bold mb-4">Produtos para seu Pet</h1>
+        <p class="text-xl max-w-2xl mx-auto">Encontre tudo que seu animal de estimação precisa</p>
+    </section>
+
+    <!-- Main Content -->
+    <main class="py-12 px-4">
+        <div class="max-w-6xl mx-auto">
+            <!-- Product Categories -->
+            <div class="flex flex-wrap justify-center gap-4 mb-12">
+                <button class="category-btn active" data-category="all">Todos</button>
+                <button class="category-btn" data-category="food">Alimentação</button>
+                <button class="category-btn" data-category="toys">Brinquedos</button>
+                <button class="category-btn" data-category="health">Saúde</button>
+                <button class="category-btn" data-category="hygiene">Higiene</button>
+            </div>
+
+            <!-- Products Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Product Card 1 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-md transition-transform hover:scale-105" data-category="food">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/026b0b0e-0d35-4817-a7f7-3aa72d0abfa2.png" alt="Pacote de ração premium para cães" class="w-full h-48 object-cover">
+                    
+                    <div class="p-4">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="text-xl font-bold">Ração Premium</h3>
+                                <p class="text-gray-500">Sabor frango - 10kg</p>
+                            </div>
+                            <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-sm">-15%</span>
+                        </div>
+                        <div class="mt-4">
+                            <span class="block text-gray-400 line-through">R$ 189,90</span>
+                            <span class="text-green-600 font-bold text-xl">R$ 159,90</span>
+                        </div>
+                        <button class="mt-4 w-full bg-indigo-600 text-white py-2 rounded hover:bg-indigo-700 transition">
+                            Adicionar ao carrinho
+                        </button>
+                        
+                    </div>
+                    
+                </div>
+                
+                <!-- Additional product cards would go here -->
+
+                <div class="bg-white rounded-lg overflow-hidden shadow-md transition-transform hover:scale-105" data-category="toys">
+  <img src="https://images.unsplash.com/photo-1592194996308-7b43878e84a6"  
+       alt="Brinquedo interativo para gatos" class="w-full h-48 object-cover">
+
+  <div class="p-4">
+    <div class="flex justify-between items-start">
+      <div>
+        <h3 class="text-xl font-bold">Brinquedo Interativo</h3>
+        <p class="text-gray-500">Ideal para gatos ativos</p>
+      </div>
+      <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-sm">Novo</span>
+    </div>
+    <div class="mt-4">
+      <span class="text-green-600 font-bold text-xl">R$ 49,90</span>
+    </div>
+    <button class="mt-4 w-full bg-indigo-600 text-white py-2 rounded hover:bg-indigo-700 transition">
+      Adicionar ao carrinho
+    </button>
+  </div>
+</div>
+
+                
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <p>© 2023 PetGo - Todos os direitos reservados</p>
+        </div>
+    </footer>
+
+    <script>
+        // Category filter functionality
+        const categoryBtns = document.querySelectorAll('.category-btn');
+        categoryBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                categoryBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                const category = btn.dataset.category;
+                document.querySelectorAll('[data-category]').forEach(product => {
+                    product.style.display = (category === 'all' || product.dataset.category === category) 
+                        ? 'block' 
+                        : 'none';
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
+

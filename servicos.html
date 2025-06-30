@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetShop - Nossos Serviços</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f9f9f9;
+        }
+        
+        .service-card {
+            transition: all 0.3s ease;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            border: 1px solid rgba(79, 70, 229, 0.2);
+        }
+        
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin: 0 auto;
+            background-color: #f0f7ff;
+        }
+        
+        .price-tag {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: #4f46e5;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+        
+        .booking-btn {
+            transition: all 0.3s ease;
+            background: linear-gradient(135deg, #4f46e5, #8b5cf6);
+        }
+        
+        .booking-btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.3);
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+        }
+        
+        .tab-item {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            padding-bottom: 0.5rem;
+        }
+        
+        .tab-item.active {
+            border-bottom: 3px solid #4f46e5;
+            color: #4f46e5;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+        <nav class="bg-white shadow-md py-4 sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-800 hover:text-indigo-600 font-medium">Início</a>
+                    <a href="servicos.html" class="text-indigo-600 font-medium border-b-2 border-indigo-600">Serviços</a>
+                    <a href="produtos.html" class="text-gray-800 hover:text-indigo-600 font-medium">Produtos</a>
+                    <a href="agendamentos.html" class="text-gray-800 hover:text-indigo-600 font-medium">Agendamento</a>
+                    <a href="contato.html" class="text-gray-800 hover:text-indigo-600 font-medium">Contato</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="py-16 px-4 md:px-8 lg:px-16 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Nossos Serviços Premium</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">Oferecemos o melhor cuidado para o seu pet com profissionais especializados e instalações modernas.</p>
+            </div>
+            
+            <!-- Tabs Navigation -->
+            <div class="flex justify-center mb-10 overflow-x-auto">
+                <div class="flex space-x-1 md:space-x-4">
+                    <button class="tab-item px-4 py-2 font-medium text-gray-600 active" data-tab="all">Todos</button>
+                    <button class="tab-item px-4 py-2 font-medium text-gray-600" data-tab="health">Saúde</button>
+                    <button class="tab-item px-4 py-2 font-medium text-gray-600" data-tab="beauty">Beleza</button>
+                    <button class="tab-item px-4 py-2 font-medium text-gray-600" data-tab="hotel">Hotel</button>
+                </div>
+            </div>
+            
+            <!-- Services Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 - Banho e Tosa -->
+                <div class="service-card bg-white p-6 relative" data-category="beauty">
+                    <div class="price-tag">R$ 80-150</div>
+                    <div class="service-icon mb-6">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/05839dcb-e222-42e0-a8f3-7d36d6c674f9.png" alt="Ícone de banho e tosa - cachorro sendo escovado por profissional com produtos de beleza" />
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Banho e Tosa Completo</h3>
+                    <p class="text-gray-600 mb-4">Banho com produtos hipoalergênicos, tosa higiênica ou estética, secagem profissional e escovação.</p>
+                    <button class="booking-btn w-full py-3 text-white font-medium rounded-lg">Agendar Serviço</button>
+                </div>
+                
+                <!-- Service 2 - Consulta Veterinária -->
+                <div class="service-card bg-white p-6 relative" data-category="health">
+                    <div class="price-tag">R$ 120-250</div>
+                    <div class="service-icon mb-6">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/6278fa74-b1af-4e9b-a0f8-03c6f321f43a.png" alt="Ícone de consulta veterinária - médico examinando um cachorro com estetoscópio" />
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Consulta Veterinária</h3>
+                    <p class="text-gray-600 mb-4">Exame clínico completo com veterinário especializado, acompanhamento de saúde e orientações.</p>
+                    <button class="booking-btn w-full py-3 text-white font-medium rounded-lg">Agendar Serviço</button>
+                </div>
+                
+                <!-- Service 3 - Hotelzinho -->
+                <div class="service-card bg-white p-6 relative" data-category="hotel">
+                    <div class="price-tag">R$ 60/dia</div>
+                    <div class="service-icon mb-6">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/9963d77b-0599-4bc7-a30e-19c8366597f0.png" alt="Ícone de hotel para pets - cachorro dormindo em suíte individual com cama confortável" />
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Hotelzinho para Pets</h3>
+                    <p class="text-gray-600 mb-4">Acomodação segura e confortável com monitoramento 24h, alimentação personalizada e recreação.</p>
+                    <button class="booking-btn w-full py-3 text-white font-medium rounded-lg">Agendar Serviço</button>
+                </div>
+                
+                <!-- Service 4 - Vacinação -->
+                <div class="service-card bg-white p-6 relative" data-category="health">
+                    <div class="price-tag">R$ 50-120</div>
+                    <div class="service-icon mb-6">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/c750d6cf-3d16-4511-99cf-98957dad9ba0.png" alt="Ícone de vacinação - seringa veterinária com frasco de vacina em fundo azul" />
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Vacinação e Vermifugação</h3>
+                    <p class="text-gray-600 mb-4">Aplicação de vacinas essenciais e vermífugos com acompanhamento de carteirinha de vacinação.</p>
+                    <button class="booking-btn w-full py-3 text-white font-medium rounded-lg">Agendar Serviço</button>
+                </div>
+                
+                <!-- Service 5 - Day Care -->
+                <div class="service-card bg-white p-6 relative" data-category="hotel">
+                    <div class="price-tag">R$ 40/dia</div>
+                    <div class="service-icon mb-6">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/605a96de-b4e3-43ca-b491-302fe336efea.png" alt="Ícone de creche - vários cachorros brincando em área de recreação com monitor" />
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Day Care</h3>
+                    <p class="text-gray-600 mb-4">Creche diária com atividades recreativas, socialização e cuidados básicos durante o dia.</p>
+                    <button class="booking-btn w-full py-3 text-white font-medium rounded-lg">Agendar Serviço</button>
+                </div>
+                
+                <!-- Service 6 - Transporte -->
+                <div class="service-card bg-white p-6 relative" data-category="health">
+                    <div class="price-tag">R$ 30-80</div>
+                    <div class="service-icon mb-6">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/8580aad1-9b0e-4e91-af3b-3ca252382802.png" alt="Ícone de transporte - van adaptada para transporte de animais com segurança" />
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Transporte Especializado</h3>
+                    <p class="text-gray-600 mb-4">Serviço de busca e entrega do seu pet com veículo adaptado e seguro para transporte animal.</p>
+                    <button class="booking-btn w-full py-3 text-white font-medium rounded-lg">Agendar Serviço</button>
+                </div>
+            </div>
+            
+            <!-- Special Offer Banner -->
+            <div class="mt-16 bg-gradient-to-r from-indigo-600 to-purple-700 rounded-xl p-8 text-white transform hover:scale-[1.01] transition-transform duration-300">
+                <div class="flex flex-col md:flex-row items-center justify-between">
+                    <div class="mb-4 md:mb-0">
+                        <h3 class="text-2xl font-bold mb-2">Pacote Completo de Bem-Estar</h3>
+                        <p class="opacity-90">Economize 20% com nosso pacote mensal que inclui banho, tosa e day care!</p>
+                    </div>
+                    <button class="bg-white text-indigo-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition">Conheça o Plano</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="scripts/services.js" defer></script>
+</body>
+</html>

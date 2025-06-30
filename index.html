@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetShop - Virtual Assistant</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Estilos do chat */
+        .chat-container {
+            height: 400px;
+            transition: all 0.3s ease;
+        }
+        .chat-container.expanded {
+            height: 500px;
+        }
+        .message-bubble {
+            max-width: 80%;
+            word-wrap: break-word;
+        }
+        .typing-indicator {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            margin-right: 4px;
+            background-color: #6b7280;
+            border-radius: 50%;
+            animation: pulse 1.5s infinite ease-in-out;
+        }
+        .typing-indicator:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        .typing-indicator:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 0.4; transform: scale(0.7); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+        
+        /* Estilos existentes do petshop */
+        .hero-image {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/d21de465-5d13-4122-98e4-42f1818f0c21.png');
+        }
+        .pet-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        .service-card:hover {
+            transform: scale(1.02);
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-50 dark:bg-gray-900 transition-all duration-300">
+    <!-- Cabeçalho -->
+    <header class="bg-white shadow-md">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/0a87e217-3d4c-4b6c-bd16-7c5819d6a6ea.png" alt="Logo do Petshop - Ilustração de um cachorro e gato" class="h-12 mr-3">
+                <h1 class="text-2xl font-bold text-indigo-700">PetShop</h1>
+            </div>
+            <nav class="hidden md:flex space-x-8">
+                <a href="index.html" class="text-gray-800 hover:text-indigo-600 font-medium">Inicio</a>
+                <a href="servicos.html" class="text-gray-800 hover:text-indigo-600 font-medium">Serviços</a>
+                <a href="produtos.html" class="text-gray-800 hover:text-indigo-600 font-medium">Produtos</a>
+                <a href="agendamentos.html" class="text-gray-800 hover:text-indigo-600 font-medium">Agendamento</a>
+                <a href="contato.html" class="text-gray-800 hover:text-indigo-600 font-medium">Contato</a>
+            </nav>
+            <div class="flex items-center space-x-4">
+                <button class="md:hidden text-gray-800">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+                <button class="bg-indigo-600 text-white px-4 py-2 rounded-full hover:bg-indigo-700 transition">
+                    <i class="fas fa-shopping-cart mr-2"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Seção Hero -->
+    <section class="hero-image bg-cover bg-center text-white py-20">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-4xl md:text-5xl font-bold mb-4">Cuide do seu pet como ele merece</h2>
+            <p class="text-xl md:text-2xl mb-8">Produtos de qualidade e serviços especializados</p>
+            <a href="agendamentos.html" class="bg-white text-indigo-700 px-8 py-3 rounded-full font-bold hover:bg-gray-100 transition hover:text-indigo-600 inline-block">
+  Agende um horário
+</a>
+
+        </div>
+    </section>
+
+    <!-- Seção de Serviços -->
+    <section id="services" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Nossos Serviços</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Serviço 1 -->
+                <div class="service-card bg-gray-50 rounded-lg overflow-hidden shadow-md transition">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/63a295c6-b97d-440d-9a09-04c17a27f01a.png" alt="Banho e tosa profissional para pets" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">Banho & Tosa</h3>
+                        <p class="text-gray-600 mb-4">Serviço completo com produtos hipoalergênicos e profissionais especializados.</p>
+                        <button class="text-indigo-600 font-medium hover:underline">Saiba mais</button>
+                    </div>
+                </div>
+                <!-- Serviço 2 -->
+                <div class="service-card bg-gray-50 rounded-lg overflow-hidden shadow-md transition">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/c2b296e8-711a-4570-b5ca-3cfad17c5307.png" alt="Veterinário cuidando de um cachorro" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">Clínica Veterinária</h3>
+                        <p class="text-gray-600 mb-4">Consultas, exames e cirurgias com os melhores veterinários da região.</p>
+                        <button class="text-indigo-600 font-medium hover:underline">Saiba mais</button>
+                    </div>
+                </div>
+                <!-- Serviço 3 -->
+                <div class="service-card bg-gray-50 rounded-lg overflow-hidden shadow-md transition">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/c17b2974-34c9-4847-b022-dd1ca674ea00.png" alt="Hotel para pets com suítes aconchegantes" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">Hotelzinho</h3>
+                        <p class="text-gray-600 mb-4">Hospedagem com monitoramento 24h, carinho e atividades recreativas.</p>
+                        <button class="text-indigo-600 font-medium hover:underline">Saiba mais</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção de Produtos -->
+    <section id="products" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Nossos Produtos</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+                <!-- Produto 1 -->
+                <div class="pet-card bg-white rounded-lg overflow-hidden shadow-md transition">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/9876e8dd-f776-4742-8ec9-d1b42d080a0d.png" alt="Pacote de ração premium para cães" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-lg font-bold mb-1 text-gray-800">Ração Premium</h3>
+                        <p class="text-gray-600 text-sm mb-2">Alimento completo para cães adultos</p>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-indigo-700">R$ 89,90</span>
+                            <button class="bg-indigo-600 text-white px-3 py-1 rounded hover:bg-indigo-700 transition">
+                                <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Produto 2 -->
+                <div class="pet-card bg-white rounded-lg overflow-hidden shadow-md transition">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/e38e68de-f797-4a3f-a972-b16fdddeb9ed.png" alt="Brinquedo para gatos em formato de peixe" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-lg font-bold mb-1 text-gray-800">Brinquedo para Gatos</h3>
+                        <p class="text-gray-600 text-sm mb-2">Peixe com catnip para diversão</p>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-indigo-700">R$ 24,90</span>
+                            <button class="bg-indigo-600 text-white px-3 py-1 rounded hover:bg-indigo-700 transition">
+                                <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Produto 3 -->
+                <div class="pet-card bg-white rounded-lg overflow-hidden shadow-md transition">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/99000280-a8f1-4f7a-b1a6-a5f018882493.png" alt="Coleira azul com detalhes em pedraria" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-lg font-bold mb-1 text-gray-800">Coleira Estilosa</h3>
+                        <p class="text-gray-600 text-sm mb-2">Ajustável com detalhes em strass</p>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-indigo-700">R$ 39,90</span>
+                            <button class="bg-indigo-600 text-white px-3 py-1 rounded hover:bg-indigo-700 transition">
+                                <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Produto 4 -->
+                <div class="pet-card bg-white rounded-lg overflow-hidden shadow-md transition">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/90edce10-8962-4ee5-97e1-40ae3335f3b2.png" alt="Kit de cuidados para pets com escova e shampoo" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-lg font-bold mb-1 text-gray-800">Kit Cuidados</h3>
+                        <p class="text-gray-600 text-sm mb-2">Escova + shampoo + condicionador</p>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-indigo-700">R$ 59,90</span>
+                            <button class="bg-indigo-600 text-white px-3 py-1 rounded hover:bg-indigo-700 transition">
+                                <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção do Chat - Adicione dark mode styles -->
+    <section id="chat-section" class="fixed bottom-6 right-6 z-50 w-full max-w-md dark:hidden">
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl overflow-hidden">
+            <!-- Cabeçalho do Chat -->
+            <div class="bg-indigo-600 text-white px-4 py-3 flex justify-between items-center">
+                <div class="flex items-center">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/da769236-ce18-47a7-afa2-c10f31d3d2bd.png" alt="Assistente virtual do Petshop - ícone de cachorro" class="h-8 w-8 rounded-full mr-2">
+                    <h3 class="font-bold">Assistente Virtual</h3>
+                </div>
+                <button id="toggle-chat" class="text-white hover:text-gray-200 transition">
+                    <i class="fas fa-minus"></i>
+                </button>
+            </div>
+            
+            <!-- Container do Chat -->
+            <div id="chat-container" class="chat-container bg-gray-50 p-4 overflow-y-auto">
+                <!-- Mensagem de Boas-vindas -->
+                <div class="flex mb-4">
+                    <div class="message-bubble bg-white text-gray-800 rounded-xl p-3 shadow-sm">
+                        <p>Olá! 🤗 Sou o assistente virtual do PetShop. Como posso ajudar você e seu pet hoje?</p>
+                        <p class="text-xs text-gray-500 mt-2">Posso ajudá-lo com informações sobre serviços, produtos e cuidados com seus animais.</p>
+                    </div>
+                </div>
+                
+                <!-- Perguntas Rápidas -->
+                <div id="quick-questions" class="grid grid-cols-2 gap-2 mb-4">
+                    <button class="quick-question-btn bg-white hover:bg-gray-100 text-gray-800 rounded-lg px-3 py-2 text-sm border border-gray-200 transition">Banho e tosa</button>
+                    <button class="quick-question-btn bg-white hover:bg-gray-100 text-gray-800 rounded-lg px-3 py-2 text-sm border border-gray-200 transition">Produtos em promoção</button>
+                    <button class="quick-question-btn bg-white hover:bg-gray-100 text-gray-800 rounded-lg px-3 py-2 text-sm border border-gray-200 transition">Horário de funcionamento</button>
+                    <button class="quick-question-btn bg-white hover:bg-gray-100 text-gray-800 rounded-lg px-3 py-2 text-sm border border-gray-200 transition">Consulta veterinária</button>
+                </div>
+            </div>
+            
+            <!-- Área de Input -->
+            <div class="border-t border-gray-200 p-4 bg-white">
+                <div class="flex items-center">
+                    <input id="user-input" type="text" placeholder="Digite sua mensagem..." 
+                           class="flex-1 border border-gray-300 rounded-lg py-2 px-4 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
+                    <button id="send-btn" class="ml-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg p-2 transition">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rodapé -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">PetShop</h3>
+                    <p class="text-gray-400">Cuidando do seu pet com amor e dedicação desde 2010.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Links Rápidos</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-white transition">Home</a></li>
+                        <li><a href="servicos.html" class="text-gray-400 hover:text-white transition">Serviços</a></li>
+                        <li><a href="produtos.html" class="text-gray-400 hover:text-white transition">Produtos</a></li>
+                        <li><a href="" class="text-gray-400 hover:text-white transition">Sobre Nós</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Contato</h4>
+                    <ul class="space-y-2">
+                        <li class="flex items-center text-gray-400">
+                            <i class="fas fa-map-marker-alt mr-2"></i>
+                            Rua dos Animais, 123
+                        </li>
+                        <li class="flex items-center text-gray-400">
+                            <i class="fas fa-phone-alt mr-2"></i>
+                            (11) 9999-9999
+                        </li>
+                        <li class="flex items-center text-gray-400">
+                            <i class="fas fa-envelope mr-2"></i>
+                            contato@petshop.com.br
+                        </li>
+                    </ul>
+                </div>
+                 <script src="/frontend/scripts/services.js"></script>
+                <div>
+                    <h4 class="font-bold mb-4">Redes Sociais</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-6 text-center text-gray-400">
+                <p>&copy; 2023 PetShop. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+  
+</body>
+</html>
