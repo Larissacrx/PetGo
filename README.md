@@ -11,7 +11,7 @@ https://pet-go-rho.vercel.app/
 
 - HTML5
 - CSS3 
-- Typescript
+- JavaScript
 - React
 
   ##⚠️Em manutenção
