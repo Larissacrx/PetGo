@@ -1,4 +1,4 @@
-// script.js
+
 
 function initChat() {
     const chatContainer = document.getElementById('chat-container');
@@ -64,7 +64,6 @@ function initChat() {
     });
 }
 
-// Função para adicionar item ao carrinho
 async function addItemToCart(item) {
     try {
         const response = await fetch('http://localhost:3000/api/cart/add', {
@@ -81,11 +80,10 @@ async function addItemToCart(item) {
     }
 }
 
-// Inicializa o chat e adiciona eventos aos botões de adicionar ao carrinho
+
 document.addEventListener('DOMContentLoaded', () => {
     initChat();
 
-    // Adiciona eventos aos botões de adicionar ao carrinho
     const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
     addToCartButtons.forEach(button => {
         button.addEventListener('click', () => {
